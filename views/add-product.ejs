@@ -1,6 +1,6 @@
 <%- include('includes/head.ejs')%>
     <link rel="stylesheet" type="text/css" href="/css/product.css">
-    
+    <link rel="stylesheet" type="text/css" href="/css/forms.css">
 </head>
 <body>
     <%- include('includes/navigation.ejs')%>
@@ -8,9 +8,9 @@
         <form class="product-form" action="/admin/product" method="POST">
             <div class="form-control">  
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title">
-                <button type="submit">Add Product</button> 
+                <input type="text" name="title" id="title">                 
             </div>
+            <button type="submit">Add Product</button>
                        
         </form>
     </main>
