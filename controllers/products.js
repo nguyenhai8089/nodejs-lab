@@ -1,4 +1,4 @@
-const products = [];
+const Product = require('../models/product');
 exports.getAddProduct = (req,res,next)=>{
     console.log('1...in the middleware1!');
     res.render('add-product', {
@@ -8,12 +8,15 @@ exports.getAddProduct = (req,res,next)=>{
 }
 exports.postAddProduct=(req,res,next)=>{
     console.log(req.body,'2...in another middleware!');
-    products.push({title:req.body.title})
+    const product = new Product(req.body.title)
+    product.save()    
     res.redirect('/')
 }
 exports.getProduct=(req,res,next)=>{
+    
+    console.log('3...in another middleware!');  
+    const products = Product.fetchAll();  
     console.log(products)
-    console.log('3...in another middleware!');    
     res.render('shop',{
             prods:products,
             pageTitle:'Shop',
