@@ -15,12 +15,14 @@ exports.postAddProduct=(req,res,next)=>{
 exports.getProduct=(req,res,next)=>{
     
     console.log('3...in another middleware!');  
-    const products = Product.fetchAll();  
-    console.log(products)
-    res.render('shop',{
+    Product.fetchAll(products=>{
+        console.log(products)
+        res.render('shop',{
             prods:products,
             pageTitle:'Shop',
             path:'/',
                        
         });
+    });  
+    
 }
