@@ -3,21 +3,8 @@ const path = require('path');
 const router = express.Router();
 const rootDir = require('../util/path')
 const adminData = require('./admin');
+const productsController = require('../controllers/products')
 
-router.get('/',(req,res,next)=>{
-    console.log(adminData.products)
-    console.log('3...in another middleware!');
-    const products = adminData.products;
-    res.render('shop',{
-            prods:products,
-            pageTitle:'Shop',
-            path:'/',
-            hasProducts:products.length>0,
-            activeShop:true,
-            mainCSS:true,
-            productCSS:false,
-
-        });
-})
+router.get('/',productsController.getProduct)
 
 module.exports = router;
