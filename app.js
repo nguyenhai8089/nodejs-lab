@@ -1,19 +1,24 @@
-const express = require('express')
 const path = require('path');
-const app =express();
-const errorController =require('./controllers/error')
-const rootDir = require('./util/path');
-const bodyParser =require('body-parser');
-const adminRoutes = require('./routes/admin')
-const shopRoutes = require('./routes/shop')
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const errorController = require('./controllers/error');
+
+const app = express();
 
 app.set('view engine', 'ejs');
+app.set('views', 'views');
 
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(express.static(path.join(rootDir, 'public')));
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
-app.use('/admin',adminRoutes);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/admin', adminRoutes);
 app.use(shopRoutes);
-app.use(errorController.get404)
+
+app.use(errorController.get404);
 
 app.listen(3000);
