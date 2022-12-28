@@ -22,6 +22,7 @@ exports.getProduct = (req, res, next) => {
   
 }
 
+
 exports.getIndex = (req, res, next) => {
   Product.fetchAll(products => {
     res.render('shop/index', {
@@ -37,6 +38,13 @@ exports.getCart = (req, res, next) => {
     path: '/cart',
     pageTitle: 'Your Cart'
   });
+};
+
+
+exports.postCart = (req, res, next) => {
+  const prodId = req.body.productId;
+  console.log(prodId);
+  res.redirect('/cart')
 };
 
 exports.getOrders = (req, res, next) => {
